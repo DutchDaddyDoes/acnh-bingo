@@ -24,7 +24,7 @@ class UI {
   updateVillager(villagerId, villagerName, random=false) {
     if (this.card.activeSlot && this.card.activeSlot !== 13) {
       let icon = new Image()
-      icon.src = `https://acnhapi.com/v1/images/villagers/${villagerId}`
+      icon.src = `https://dutchdaddydoes.github.io/ACNHAPI/images/villagers/${villagerId}`
       icon.crossOrigin = 'anonymous'
       
       let column = String(this.card.activeGridPosition)[0]
