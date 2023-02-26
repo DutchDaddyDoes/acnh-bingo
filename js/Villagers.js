@@ -11,7 +11,6 @@ class Villagers {
   async getVillagers() {
     const response = await fetch(this.url)
     const json = await response.json()
-    console.log(json)
     Object.entries(await json).forEach(villager => {
       let villagerNew = villager[1]
       villagerNew.id = villager[0]

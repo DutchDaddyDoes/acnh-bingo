@@ -19,7 +19,7 @@ class Card {
         // Call `init()` again to sort animals
         this.init()
       // After retrieving villagers, sort into Animals
-      } else if (this.villagers.villagers.length === 391) {
+      } else if (this.villagers.villagers.length === 413) {
         // Sort Villagers
         this.villagers.animals = await this.villagers.sortVillagers()
         // Render Animal List
@@ -29,7 +29,7 @@ class Card {
       // Reset `this.villagers.villagers` if undefined
       this.villagers.villagers = new Array()
       // Call `init()` again to restart process
-      setTimeout(this.init(), 1000)
+      setTimeout(this.init(), 5000)
     }
   }
 
@@ -46,7 +46,7 @@ class Card {
 
       if (slot !== 13) {  
         // Get random integer between 0 and 391
-        const randomVillagerNumber = Math.floor(Math.random() * Math.floor(392))
+        const randomVillagerNumber = Math.floor(Math.random() * Math.floor(414))
         
         // Get Villager from `randomVillagerNumber`
         const villager = this.villagers.villagers[randomVillagerNumber]
