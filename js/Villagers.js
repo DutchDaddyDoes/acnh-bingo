@@ -2,7 +2,7 @@ class Villagers {
   constructor(card) {
     this.card = card
 
-    this.url = 'https://acnhapi.com/v1/villagers/'
+    this.url = 'https://dutchdaddydoes.github.io/ACNHAPI/villagers.json'
     
     this.villagers = new Array()
     this.animals = new Object()
@@ -11,6 +11,7 @@ class Villagers {
   async getVillagers() {
     const response = await fetch(this.url)
     const json = await response.json()
+    console.log(json)
     Object.entries(await json).forEach(villager => {
       let villagerNew = villager[1]
       villagerNew.id = villager[0]
@@ -24,8 +25,11 @@ class Villagers {
     const anteaters = villagers.filter(villager => villager.species === 'Anteater')
     const bears = villagers.filter(villager => villager.species === 'Bear')
     const birds = villagers.filter(villager => villager.species === 'Bird')
+    const bulls = villagers.filter(villager => villager.species === 'Bull')
+    const cats = villagers.filter(villager => villager.species === 'Cat')
     const chickens = villagers.filter(villager => villager.species === 'Chicken')
     const cows = villagers.filter(villager => villager.species === 'Cow')
+    const cubs = villagers.filter(villager => villager.species === 'Cub')
     const gators = villagers.filter(villager => villager.species === 'Alligator')
     const deer = villagers.filter(villager => villager.species === 'Deer')
     const dogs = villagers.filter(villager => villager.species === 'Dog')
@@ -67,6 +71,14 @@ class Villagers {
         animalName: 'Birds',
         birds,
       },
+      bulls: {
+        animalName: 'Bulls',
+        bulls,
+      },
+      cats: {
+        animalName: 'Cats',
+        cats,
+      },
       chickens: {
         animalName: 'Chickens',
         chickens,
@@ -74,6 +86,10 @@ class Villagers {
       cows: {
         animalName: 'Cows',
         cows,
+      },
+      cubs: {
+        animalName: 'Cubs',
+        cubs,
       },
       gators: {
         animalName: 'Alligators and Crocodiles',
