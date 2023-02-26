@@ -24,7 +24,6 @@ class UI {
   updateVillager(villagerId, villagerName, random=false) {
     if (this.card.activeSlot && this.card.activeSlot !== 13) {
       let icon = new Image()
-      console.log($villagerId)
       icon.src = `https://dutchdaddydoes.github.io/ACNHAPI/images/villagers/${villagerId}`
       icon.crossOrigin = 'anonymous'
       
