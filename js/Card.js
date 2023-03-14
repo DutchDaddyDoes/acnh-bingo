@@ -46,7 +46,7 @@ class Card {
 
       if (slot !== 13) {  
         // Get random integer between 0 and 391
-        const randomVillagerNumber = Math.floor(Math.random() * Math.floor(414))
+        const randomVillagerNumber = Math.floor(Math.random() * Math.floor(413))
         
         // Get Villager from `randomVillagerNumber`
         const villager = this.villagers.villagers[randomVillagerNumber]
