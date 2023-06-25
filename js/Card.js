@@ -40,13 +40,29 @@ class Card {
 
   randomizeCard() {
     // For each slot on Bingo Card (1-25, except 13)
+    let numbers = Array.apply(null, {length: 413}).map(Number.call, Number);
+    shuffle(numbers);
+
+    function shuffle(numbers) {
+      let currentIndex = numbers.length, randomIndex;
+
+      while(currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex--;
+
+        [numbers[currentIndex],numbers[randomIndex]] = [numbers[randomIndex],numbers[currentIndex]];
+      }
+
+      return numbers;
+    }
+
     for (let slot = 0; slot < 26; slot++) {
       this.activeSlot = slot
       this.activeGridPosition = this.slotData.slotToGrid[slot]
 
       if (slot !== 13) {  
-        // Get random integer between 0 and 391
-        const randomVillagerNumber = Math.floor(Math.random() * Math.floor(413))
+        // Get random integer between 0 and 413
+        const randomVillagerNumber = numbers[this.activeSlot] //Math.floor(Math.random() * Math.floor(413))
         
         // Get Villager from `randomVillagerNumber`
         const villager = this.villagers.villagers[randomVillagerNumber]
