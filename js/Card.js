@@ -8,6 +8,17 @@ class Card {
     this.activeGridPosition = undefined
 
     this.random = false
+    this.cardSize = '5x5' // Default to 5x5
+  }
+
+  setCardSize(size) {
+    this.cardSize = size
+    this.ui.redrawCard()
+    // Reset any active selections
+    this.activeGridPosition = undefined
+    this.activeSlot = undefined
+    const instructions = document.getElementById('instructions')
+    instructions.innerHTML = 'Select a Spot on the Bingo Card to Fill.'
   }
 
   async init() {
@@ -55,15 +66,30 @@ class Card {
 
       return numbers;
     }
+    
+    if (this.cardSize === '5x5') {
+      // 5x5 card with free space
+      for (let slot = 1; slot <= 25; slot++) {
+        this.activeSlot = slot
+        this.activeGridPosition = this.slotData.slotToGrid[slot]
 
-    for (let slot = 0; slot < 26; slot++) {
-      this.activeSlot = slot
-      this.activeGridPosition = this.slotData.slotToGrid[slot]
+        if (slot !== 13) {  
+          // Get Villager
+          const randomVillagerNumber = numbers[slot-1]
+          const villager = this.villagers.villagers[randomVillagerNumber]
 
-      if (slot !== 13) {  
-        // Get random integer between 0 and 413
-        const randomVillagerNumber = numbers[this.activeSlot] //Math.floor(Math.random() * Math.floor(413))
-        
+          // Call updateVillager() to place Villager on card
+          this.ui.updateVillager(villager.id, villager.name['name-USen'], true)
+        }
+      }
+    } else {
+      // 4x4 card without free space
+      for (let slot = 1; slot <= 16; slot++) {
+        this.activeSlot = slot
+        this.activeGridPosition = this.slotData.slotTo4x4Grid[slot]
+
+        // Get Villager
+        const randomVillagerNumber = numbers[slot-1]
         // Get Villager from `randomVillagerNumber`
         const villager = this.villagers.villagers[randomVillagerNumber]
 
@@ -71,7 +97,7 @@ class Card {
         this.ui.updateVillager(villager.id, villager.name['name-USen'], true)
       }
     }
-    
+
     this.random = true
     this.ui.toggleRandomVerificationElement()
   }

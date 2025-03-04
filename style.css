@@ -3,7 +3,7 @@ body {
   overflow: hidden;
 
   text-align: center;
-  
+
   background-color: #fafafa;
 }
 
@@ -22,7 +22,7 @@ div#bingo-card {
 section#villagers {
   width: 60vw;
   height: 100vh;
-  
+
   overflow: scroll;
 }
 
@@ -30,8 +30,9 @@ section#villagers {
   margin: 3vh 5vw 0 2.25vw;
   padding-top: 1.5vh;
 
-  height: 5vh;
+  height: 50px;
   width: 35vw;
+  min-width: 520px;
 
   font-size: 30px;
 
@@ -43,7 +44,7 @@ section#villagers {
   cursor: pointer;
 
   margin-top: 1vh;
-  margin-bottom: -1vh;
+  margin-bottom: 5px;
 
   color: #1a5165;
 
@@ -55,9 +56,25 @@ section#villagers {
   font-style: normal;
 }
 
+#card-size-toggle {
+  margin-bottom: 10px;
+  color: #1a5165;
+  font-size: 14px;
+}
+
+#card-size-toggle label {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+#card-size-toggle input {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
 .animal-type-header {
   margin-left: 2vw;
-  
+
   color: #5288ac;
   text-align: left;
 
@@ -94,10 +111,11 @@ section#villagers {
 section#canvas {
   height: 100vh;
   width: 40vw;
-  
+  min-width: 600px;
+
   position: fixed;
   right: 0;
-  
+
   background-color: #CADEE6;
 }
 
@@ -151,8 +169,7 @@ canvas {
 }
 
 div#download-btn {
-  margin-top: 2vh;
-  margin-left: 13vw;
+  margin: 2vh auto 0 auto;
 
   height: 50px;
   width: 250px;

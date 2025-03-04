@@ -3,7 +3,7 @@ class Villagers {
     this.card = card
 
     this.url = 'https://dutchdaddydoes.github.io/ACNHAPI/villagers.json'
-    
+
     this.villagers = new Array()
     this.animals = new Object()
   }
@@ -17,7 +17,7 @@ class Villagers {
       this.card.villagers.villagers.push(villagerNew)
     })
   }
-  
+
   sortVillagers() {
     const { villagers } = this.card.villagers
 
@@ -56,11 +56,19 @@ class Villagers {
     const squirrels = villagers.filter(villager => villager.species === 'Squirrel')
     const tigers = villagers.filter(villager => villager.species === 'Tiger')
     const wolves = villagers.filter(villager => villager.species === 'Wolf')
-  
+
     return {
+      gators: {
+        animalName: 'Alligators',
+        gators,
+      },
       anteaters: {
         animalName: 'Anteaters',
         anteaters,
+      },
+      cubs: {
+        animalName: 'Bear Cubs',
+        cubs,
       },
       bears: {
         animalName: 'Bears',
@@ -85,14 +93,6 @@ class Villagers {
       cows: {
         animalName: 'Cows',
         cows,
-      },
-      cubs: {
-        animalName: 'Cubs',
-        cubs,
-      },
-      gators: {
-        animalName: 'Alligators and Crocodiles',
-        gators,
       },
       deer: {
         animalName: 'Deer',
@@ -150,13 +150,13 @@ class Villagers {
         animalName: 'Lions',
         lions,
       },
-      monkeys: {
-        animalName: 'Monkeys',
-        monkeys,
-      },
       mice: {
         animalName: 'Mice',
         mice,
+      },
+      monkeys: {
+        animalName: 'Monkeys',
+        monkeys,
       },
       octopuses: {
         animalName: 'Octopuses',

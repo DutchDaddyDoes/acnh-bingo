@@ -16,6 +16,10 @@ class SlotData {
       'N': this.cardMargin + 2 * (this.slotWidth + this.slotMargin),     // 245
       'G': this.cardMargin + 3 * (this.slotWidth + this.slotMargin),     // 355
       'O': this.cardMargin + 4 * (this.slotWidth + this.slotMargin),     // 465
+      // 4x4 columns
+      'A': this.cardMargin,                                              // 25
+      'C': this.cardMargin + this.slotWidth + this.slotMargin,           // 135
+      'H': this.cardMargin + 3 * (this.slotWidth + this.slotMargin),     // 355
     }
 
     // Row Start Absolute Positions
@@ -84,6 +88,46 @@ class SlotData {
       24: 'G 5',
       25: 'O 5',
     }
+
+    // 4x4 Grid mapping
+    this.slotTo4x4Grid = {
+      1: 'A 1',
+      2: 'C 1',
+      3: 'N 1',
+      4: 'H 1',
+      5: 'A 2',
+      6: 'C 2',
+      7: 'N 2',
+      8: 'H 2',
+      9: 'A 3',
+      10: 'C 3',
+      11: 'N 3',
+      12: 'H 3',
+      13: 'A 4',
+      14: 'C 4',
+      15: 'N 4',
+      16: 'H 4',
+    }
+
+    // 4x4 Grid to slot mapping
+    this.grid4x4ToSlot = {
+      'A 1': 1,
+      'C 1': 2,
+      'N 1': 3,
+      'H 1': 4,
+      'A 2': 5,
+      'C 2': 6,
+      'N 2': 7,
+      'H 2': 8,
+      'A 3': 9,
+      'C 3': 10,
+      'N 3': 11,
+      'H 3': 12,
+      'A 4': 13,
+      'C 4': 14,
+      'N 4': 15,
+      'H 4': 16,
+    }
   }
 
   detectGridPosition(windowX, windowY) {
@@ -91,7 +135,7 @@ class SlotData {
     const bodyRect = document.body.getBoundingClientRect()
     const offsetTop = canvasRect.top - bodyRect.top
     const offsetLeft = canvasRect.left - bodyRect.left
-  
+
     const column = this.detectColumn(windowX - offsetLeft)
     const row = this.detectRow(windowY - offsetTop)
 
@@ -99,20 +143,37 @@ class SlotData {
   }
 
   detectColumn(clickY) {
-    if (clickY > this.columns['B'] - 15) { // 10
-      if (clickY > this.columns['I']) { // 135
-        if (clickY > this.columns['N']) { // 245
-          if (clickY > this.columns['G']) { // 355
-            if (clickY > this.columns['O'])  { // 465
-              return 'O'
+    if (this.card.cardSize === '4x4') {
+      // Logic for 4x4 card (ACNH columns)
+      if (clickY > this.columns['A'] - 15) { // 10
+        if (clickY > this.columns['C']) { // 135
+          if (clickY > this.columns['N']) { // 245
+            if (clickY > this.columns['H']) { // 355
+              return 'H'
             }
-            return 'G'
+            return 'N'
           }
-          return 'N'
+          return 'C'
         }
-        return 'I'
+        return 'A'
       }
-      return 'B'
+    } else {
+      // Original logic for 5x5 card (BINGO columns)
+      if (clickY > this.columns['B'] - 15) { // 10
+        if (clickY > this.columns['I']) { // 135
+          if (clickY > this.columns['N']) { // 245
+            if (clickY > this.columns['G']) { // 355
+              if (clickY > this.columns['O'])  { // 465
+                return 'O'
+              }
+              return 'G'
+            }
+            return 'N'
+          }
+          return 'I'
+        }
+        return 'B'
+      }
     }
   }
 

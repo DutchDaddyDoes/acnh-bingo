@@ -13,7 +13,7 @@
         <div id="top">
           <div id="logo"><img src="img/bingo_icon.png"/></div>
           <div id="ad">
-            <h4 class="grow"><span aria-labelledby="sparkle">✨</span><span aria-labelledby="point-right">👉 </span><a href="https://ko-fi.com/dutchdaddydoes" target="_blank">Up to date version of ACNH-Bingo!</br>Please support me on Ko-Fi!</a></a><span aria-labelledby="point-left"> 👈</span><span aria-labelledby="sparkle">✨</span></h4>
+            <h4 class="grow"><span aria-labelledby="sparkle">✨</span><span aria-labelledby="point-right">👉 </span><a href="https://ko-fi.com/dutchdaddygamer" target="_blank">Up to date version of ACNH-Bingo!</br>Please support me on Ko-Fi!</a></a><span aria-labelledby="point-left"> 👈</span><span aria-labelledby="sparkle">✨</span></h4>
           </div>
         </div>
           <div id="villagers-container">Loading 413 New Horizons Villagers...</div>
@@ -25,6 +25,11 @@
           Or click here to randomize your bingo card.
           <span aria-labelledby="arrow-left"> ⬅️</span>
         </p>
+
+        <div id="card-size-toggle">
+          <label><input type="radio" name="card-size" value="5x5" checked onclick="card.setCardSize('5x5')"> 5x5 (with free space)</label>
+          <label><input type="radio" name="card-size" value="4x4" onclick="card.setCardSize('4x4')"> 4x4 (no free space)</label>
+        </div>
 
         <canvas></canvas>
 
