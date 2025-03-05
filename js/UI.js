@@ -23,6 +23,11 @@ class UI {
 
     this.firstTextPlaced = false
     this.canvas.addEventListener('click', this.clickCanvas.bind(this))
+
+    // Add resize listener for responsiveness
+    window.addEventListener('resize', () => {
+      this.redrawCard()
+    })
   }
 
   setBackground() {
@@ -32,13 +37,15 @@ class UI {
   }
 
   redrawCard() {
-    // Adjust canvas size based on card size
+    // Adjust canvas size based on card size and screen width
+    const isMobile = window.innerWidth <= 768;
+
     if (this.card.cardSize === '4x4') {
-      this.canvas.width = 480
-      this.canvas.height = 590
+      this.canvas.width = isMobile ? Math.min(480, window.innerWidth - 20) : 480;
+      this.canvas.height = isMobile ? this.canvas.width * (590/480) : 590;
     } else {
-      this.canvas.width = 590
-      this.canvas.height = 700
+      this.canvas.width = isMobile ? Math.min(590, window.innerWidth - 20) : 590;
+      this.canvas.height = isMobile ? this.canvas.width * (700/590) : 700;
     }
 
     // Clear canvas and redraw background
@@ -62,12 +69,12 @@ class UI {
       icon.onload = () => {
         const columnCenter = this.card.slotData.columns[column] + 50
         const textWidth = Number(this.ctx.measureText(villagerName).width)
-        const textHeightPosition = this.card.slotData.rows[row] + this.card.slotData.slotHeight - 10
+        const textHeightPosition = this.card.slotData.rows[row] + this.card.slotData.slotHeight
 
-        this.ctx.drawImage(icon, this.card.slotData.columns[column] + 20, this.card.slotData.rows[row] + 15, 60, 60)
+        this.ctx.drawImage(icon, this.card.slotData.columns[column] + 12.5, this.card.slotData.rows[row] + 10, 75, 75)
 
         this.ctx.fillStyle = "#fff"
-        this.ctx.fillRect(this.card.slotData.columns[column] + 20, this.card.slotData.rows[row] + 75, 60, 20)
+        this.ctx.fillRect(this.card.slotData.columns[column] + 12.5, this.card.slotData.rows[row] + 85, 75, 20)
 
         this.ctx.font = '14px Balsamiq Sans'
         this.ctx.fillStyle = '#60bec3'
@@ -77,7 +84,7 @@ class UI {
         if (!this.firstTextPlaced) {
           this.firstTextPlaced = true
           this.ctx.fillStyle = "#fff"
-          this.ctx.fillRect(this.card.slotData.columns[column] + 20, this.card.slotData.rows[row] + 75, 60, 20)
+          this.ctx.fillRect(this.card.slotData.columns[column] + 12.5, this.card.slotData.rows[row] + 85, 75, 20)
 
           this.ctx.font = '14px Balsamiq Sans'
           this.ctx.fillStyle = '#60bec3'
@@ -149,9 +156,10 @@ class UI {
     villagersContainer.innerHTML = ''
 
     for (const animalType in animalsObj) {
-      // Create AnimalType Header
+      // Create AnimalType Header and count
       const animalHeading = document.createElement('h2')
-      animalHeading.innerHTML = animalsObj[animalType]['animalName']
+      const villagerCount = animalsObj[animalType][animalType].length
+      animalHeading.innerHTML = animalsObj[animalType]['animalName'] + ' (' + villagerCount + ')'
       animalHeading.className = 'animal-type-header'
       villagersContainer.appendChild(animalHeading)
 
