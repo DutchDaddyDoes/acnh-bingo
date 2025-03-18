@@ -121,6 +121,7 @@ section#canvas {
 
 canvas {
   margin-top: 3vh;
+  overflow-y: auto;
 }
 
 #logo img {
