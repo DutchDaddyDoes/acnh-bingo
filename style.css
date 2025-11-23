@@ -23,7 +23,8 @@ section#villagers {
   width: 60vw;
   height: 100vh;
 
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #instructions {
@@ -117,6 +118,9 @@ section#canvas {
   right: 0;
 
   background-color: #CADEE6;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 canvas {
